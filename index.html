@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open App/Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: #667eea 0%;
+            color: white;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        a {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <p id="status">Click the button below to open - App/Game</p>
+        <a href="pixelxracer://open?DelearShip"  id="playButton">pixelxracer://open?DelearShip</a>
+    </div>
+
+    <script>
+        const playButton = document.getElementById('playButton');
+        const statusText = document.getElementById('status');
+        
+        // Detect platform
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        const isAndroid = /Android/.test(navigator.userAgent);
+        
+        playButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            window.location.href = 'pixelxracer://open?DelearShip';
+            
+            
+            setTimeout(function() {
+                if (isIOS) {
+                    // Redirect to App Store 
+                    window.location.href = 'https://apps.apple.com/us/app/pixel-x-racer/id6468572363';
+                } else if (isAndroid) {
+                    // Redirect to Play Store
+                    window.location.href = 'https://play.google.com/store/apps/details?id=com.pixel.pixelxracer.pixelracer&hl=en_IN';
+                } else {
+                    // Fallback for other platforms
+                    window.location.href = 'https://play.google.com/store/apps/details?id=com.pixel.pixelxracer.pixelracer&hl=en_IN';
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
